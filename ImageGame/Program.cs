@@ -35,7 +35,7 @@ namespace ImageGame
             client.Authenticator = new JwtAuthenticator(accessToken);
             var request = new RestRequest("/v1/albums", DataFormat.Json);
             var response = client.Get(request);
-            var data = JsonConvert.DeserializeObject<AlbumData>(response.Content);
+            JsonConvert.DeserializeObject<AlbumData>(response.Content);
         }
     }
 }
