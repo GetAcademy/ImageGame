@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Gkmo.Google.Apis.PhotosLibrary.v1" Version="1.36.1.1471" />
     <PackageReference Include="Google.Apis.Auth.AspNetCore" Version="1.44.1" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
   </ItemGroup>
 
 </Project>

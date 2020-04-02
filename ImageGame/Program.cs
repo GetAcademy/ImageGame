@@ -4,6 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util.Store;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace ImageGame
 {
@@ -27,6 +30,12 @@ namespace ImageGame
                     "user",
                     CancellationToken.None
             );
+            var accessToken= await credential.GetAccessTokenForRequestAsync();
+            var client = new RestClient("https://photoslibrary.googleapis.com");
+            client.Authenticator = new JwtAuthenticator(accessToken);
+            var request = new RestRequest("/v1/albums", DataFormat.Json);
+            var response = client.Get(request);
+            var data = JsonConvert.DeserializeObject<AlbumData>(response.Content);
         }
     }
 }
